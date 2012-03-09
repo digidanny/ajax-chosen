@@ -117,7 +117,8 @@ do ($ = jQuery) ->
           # Chosen.search_field_scale() after resetting the value above.  This isn't
           # possible with the current state of Chosen.  The quick fix is to simply reset
           # the width of the field after we reset the value of the input text.
-          field.css('width','auto') if @.attr('multiple')
+          select = field.parentsUntil('.chzn-container').last().parent().prev()
+          field.css('width','auto') if select.attr('multiple')
                     
         # Execute the ajax call to search for autocomplete data with a timer
         @timer = setTimeout -> 
