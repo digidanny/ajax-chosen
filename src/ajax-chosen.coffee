@@ -28,7 +28,7 @@ do ($ = jQuery) ->
         # into the input form that chosen has created
         
         # Retrieve the current value of the input form
-        val = $.trim $(@).attr('value')
+        val = $(@).attr('value')
 
         # Depending on how much text the user has typed, let them know
         # if they need to keep typing or if we are looking for their data
@@ -69,8 +69,8 @@ do ($ = jQuery) ->
         # finished.
         options.success = (data) ->
           # Exit if the data we're given is invalid
-          return if not data?
-          
+          return if not data? or data.query != field.val()
+
           # Go through all of the <option> elements in the <select> and remove
           # ones that have not been selected by the user.  For those selected
           # by the user, add them to a list to filter from the results later.
