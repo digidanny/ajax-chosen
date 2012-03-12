@@ -119,6 +119,11 @@ do ($ = jQuery) ->
           # the width of the field after we reset the value of the input text.
           select = field.parentsUntil('.chzn-container').last().parent().prev()
           field.css('width','auto') if select.attr('multiple')
+
+          # Let the user know if no items were found
+          if $.map(items, (v,k) => return k).length == 0
+            chzn = select.next('.chzn-container').find('.chzn-results').first()
+            chzn.append($('<li/>', {class: 'no-results'}).text("No results"))
                     
         # Execute the ajax call to search for autocomplete data with a timer
         @timer = setTimeout -> 
